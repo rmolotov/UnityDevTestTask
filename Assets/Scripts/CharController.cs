@@ -1,17 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Infrastructure.Signals;
 using UnityEngine;
+using Zenject;
 
 public class CharController : MonoBehaviour, IInteractable
 {
     [SerializeField] private AudioClip[] clips;
     private Animator _animator;
     private AudioSource _audioSource;
-    
-    void Awake()
+
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        Appear();
     }
 
     public void Appear() => _animator.SetTrigger("Appear");
